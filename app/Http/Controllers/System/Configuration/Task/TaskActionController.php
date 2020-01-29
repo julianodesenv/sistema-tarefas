@@ -33,7 +33,9 @@ class TaskActionController extends Controller
     {
         $config = $this->header();
         $config['action'] = 'Listagem';
-        $dados = $this->repository->orderBy('name')->paginate();
+        $dados = $this->repository->with(array('sector' => function($query){
+            $query->orderBy('name');
+        }))->orderBy('name')->paginate();
 
         return view('system.configuration.task.action.index', compact('dados', 'config'));
     }

@@ -81,7 +81,7 @@ class TaskController extends Controller
     {
         $config = $this->header();
         $config['action'] = 'Listagem';
-        $dados = $this->repository->with(['users', 'users.user'])->all();
+        $dados = $this->repository->with(['users', 'users.user', 'client', 'action', 'project', 'sector', 'priority'])->all();
 
         return view('system.task.calendar', compact('dados', 'config'));
     }
@@ -92,9 +92,9 @@ class TaskController extends Controller
         $config['action'] = 'Cadastrar';
 
         $clients = $this->clientRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
-        $projects = $this->taskProjectRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
+        $projects = ['Selecione um Cliente' => ''];
         $sectors = $this->sectorRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
-        $actions = $this->taskActionRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
+        $actions = ['Selecione um Setor' => ''];
         $priorities = $this->taskPriorityRepository->orderBy('order')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
         $users = $this->userRepository->orderBy('name')->all();
         $responsibleUsers = $users->pluck('name', 'id')->prepend('Selecione', '');
@@ -141,9 +141,9 @@ class TaskController extends Controller
         $dados->end_date = mysql_to_data($dados->end_date);
 
         $clients = $this->clientRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
-        $projects = $this->taskProjectRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
+        $projects = $this->taskProjectRepository->orderBy('name')->findWhere(['active' => 'y', 'client_id' => $dados->client_id])->pluck('name', 'id')->prepend('Selecione', '');
         $sectors = $this->sectorRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
-        $actions = $this->taskActionRepository->orderBy('name')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
+        $actions = $this->taskActionRepository->orderBy('name')->findWhere(['active' => 'y', 'sector_id' => $dados->sector_id])->pluck('name', 'id')->prepend('Selecione', '');
         $priorities = $this->taskPriorityRepository->orderBy('order')->findByField('active', 'y')->pluck('name', 'id')->prepend('Selecione', '');
         $users = $this->userRepository->orderBy('name')->all();
         $responsibleUsers = $users->pluck('name', 'id')->prepend('Selecione', '');

@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * Class CreateScheduleUsersTable.
  */
-class CreateScheduleUsersTable extends Migration
+class CreateModelProjectsTable extends Migration
 {
 	/**
 	 * Run the migrations.

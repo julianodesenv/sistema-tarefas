@@ -6,6 +6,8 @@
             $varRequired = '';
             $varDataPlugin = '';
             $varPlaceholder = '';
+            $varDataClasse = '';
+            $varDataRoute= '';
             if (isset($i_0['required']) && $i_0['required']) {
                 $varRequired = 'required';
                 $i_0['label'] = $i_0['label'] . ' *';
@@ -19,6 +21,12 @@
             if (isset($i_0['class'])) {
                 $varClass = $i_0['class'];
             }
+            if (isset($i_0['data-classe'])) {
+                $varDataClasse = $i_0['data-classe'];
+            }
+            if (isset($i_0['data-route'])) {
+                $varDataRoute = $i_0['data-route'];
+            }
             $varClass .= ($errors->has($i_0['name']) ? ' is-invalid' : '');
             ?>
             {!! Form::label($i_0['name'], $i_0['label']) !!}
@@ -26,7 +34,9 @@
                     'class' => 'form-control '.$varClass,
                     $varRequired,
                     'data-plugin' => $varDataPlugin,
-                    'data-placeholder' => $varPlaceholder
+                    'data-placeholder' => $varPlaceholder,
+                    'data-classe' => $varDataClasse,
+                    'data-route' => $varDataRoute
                 ])
              }}
         @endcomponent
@@ -38,6 +48,8 @@
             $varRequired = '';
             $varDataPlugin = '';
             $varPlaceholder = '';
+            $varDataClasse = '';
+            $varDataRoute= '';
             if (isset($i_1['required']) && $i_1['required']) {
                 $varRequired = 'required';
                 $i_1['label'] = $i_1['label'] . ' *';
@@ -51,6 +63,12 @@
             if (isset($i_1['class'])) {
                 $varClass = $i_1['class'];
             }
+            if (isset($i_1['data-classe'])) {
+                $varDataClasse = $i_1['data-classe'];
+            }
+            if (isset($i_1['data-route'])) {
+                $varDataRoute = $i_1['data-route'];
+            }
             $varClass .= ($errors->has($i_1['name']) ? ' is-invalid' : '');
             ?>
             {!! Form::label($i_1['name'], $i_1['label']) !!}
@@ -58,7 +76,9 @@
                     'class' => 'form-control '.$varClass,
                     $varRequired,
                     'data-plugin' => $varDataPlugin,
-                    'data-placeholder' => $varPlaceholder
+                    'data-placeholder' => $varPlaceholder,
+                    'data-classe' => $varDataClasse,
+                    'data-route' => $varDataRoute
                 ])
             }}
         @endcomponent
@@ -70,6 +90,8 @@
             $varRequired = '';
             $varDataPlugin = '';
             $varPlaceholder = '';
+            $varDataClasse = '';
+            $varDataRoute= '';
             if (isset($i_2['required']) && $i_2['required']) {
                 $varRequired = 'required';
                 $i_2['label'] = $i_2['label'] . ' *';
@@ -83,6 +105,12 @@
             if (isset($i_2['class'])) {
                 $varClass = $i_2['class'];
             }
+            if (isset($i_2['data-classe'])) {
+                $varDataClasse = $i_2['data-classe'];
+            }
+            if (isset($i_2['data-route'])) {
+                $varDataRoute = $i_2['data-route'];
+            }
             $varClass .= ($errors->has($i_2['name']) ? ' is-invalid' : '');
             ?>
             {!! Form::label($i_2['name'], $i_2['label']) !!}
@@ -90,7 +118,9 @@
                     'class' => 'form-control '.$varClass,
                     $varRequired,
                     'data-plugin' => $varDataPlugin,
-                    'data-placeholder' => $varPlaceholder
+                    'data-placeholder' => $varPlaceholder,
+                    'data-classe' => $varDataClasse,
+                    'data-route' => $varDataRoute
                 ])
             }}
         @endcomponent

@@ -295,6 +295,69 @@ function competencia_data($date)
     return $date[1] . '/' . $date[0];
 }
 
+function gerarDataAdiante($qtdeDias)
+{
+    $data = date('Y-m-d h:i:s', strtotime("+$qtdeDias days", strtotime(DATAHORAMYSQL)));
+
+    return $data;
+}
+
+function dataDiferencaHorario($dataini, $datafim)
+{
+    $time_inicial = strtotime($dataini);
+    $time_final = strtotime($datafim);
+
+    // Calcula a diferença de segundos entre as duas datas:
+    $diferenca = $time_final - $time_inicial; // 19522800 segundos
+
+    // Calcula a diferença de dias
+    $dias = floor($diferenca / 86400);
+    $horas = floor($diferenca / 3600);
+    $horasCal = floor(($diferenca - ($dias * 86400)) / 3600);
+    $minutos = floor(($diferenca - ($dias * 86400) - ($horasCal * 3600)) / 60);
+    $segundos = floor($diferenca - ($dias * 86400) - ($horasCal * 3600) - ($minutos * 60));
+
+    return $horas . ':' . $minutos . ':' . $segundos;
+}
+
+function calculaHoras($horaini, $horafim)
+{
+    if (is_null($horaini)) {
+        $horaini = '00:00:00';
+    }
+    if (is_null($horafim)) {
+        $horafim = '00:00:00';
+    }
+    $times = array($horaini, $horafim);
+    $seconds = 0;
+
+    foreach ($times as $time) {
+        list($g, $i, $s) = explode(':', $time);
+        $seconds += $g * 3600;
+        $seconds += $i * 60;
+        $seconds += $s;
+    }
+
+    $hours = (int)floor($seconds / 3600);
+    if ($hours == 0) {
+        $hours = '00';
+    }
+    $seconds -= $hours * 3600;
+    if ($seconds == 0) {
+        $seconds = '00';
+    }
+    $minutes = (int)floor($seconds / 60);
+    if ($seconds == 0) {
+        $seconds = '00';
+    }
+    $seconds -= $minutes * 60;
+    if ($seconds == 0) {
+        $seconds = '00';
+    }
+
+    return $hours . ':' . $minutes . ':' . $seconds;
+}
+
 function mysql_to_data($data_mysql, $hora = false, $segundos = true)
 {
     if ($hora) {

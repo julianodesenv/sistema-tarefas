@@ -11,6 +11,15 @@ Route::group(['as' => 'system.', 'namespace' => 'System', 'middleware' => 'auth'
         Route::get('cityByStateSelect/{id}', ['as' => 'cityByStateSelect', 'uses' => 'CityController@getCityByStateSelect']);
         Route::get('citiesSelect/{state_id}/{city_id}', ['as' => 'citiesSelect', 'uses' => 'CityController@citiesSelect']);
         Route::get('addressZipCode/{zip_code}', ['as' => 'addressZipCode', 'uses' => 'AddressController@getAddressZipCode']);
+
+        Route::group(['prefix' => 'task', 'as' => 'task.', 'namespace' => 'Task'], function () {
+            Route::group(['prefix' => 'project', 'as' => 'project.'], function () {
+                Route::get('selectByClient/{id?}', ['as' => 'selectByClient', 'uses' => 'TaskProjectController@ajaxSelectByClient']);
+            });
+            Route::group(['prefix' => 'action', 'as' => 'action.'], function () {
+                Route::get('selectByAction/{id?}', ['as' => 'selectByAction', 'uses' => 'TaskActionController@ajaxSelectByAction']);
+            });
+        });
     });
 
     //TASKS
@@ -24,6 +33,8 @@ Route::group(['as' => 'system.', 'namespace' => 'System', 'middleware' => 'auth'
         Route::put('update/{id}', ['as' => 'update', 'uses' => 'TaskController@update']);
         Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'TaskController@destroy']);
 
+        Route::get('my-tasks/{id?}', ['as' => 'my-tasks', 'uses' => 'TaskUserController@index']);
+
         //USERS
         Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('{id}', ['as' => 'index', 'uses' => 'TaskUserController@index']);
@@ -31,6 +42,14 @@ Route::group(['as' => 'system.', 'namespace' => 'System', 'middleware' => 'auth'
             Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'TaskUserController@edit']);
             Route::put('update/{id}', ['as' => 'update', 'uses' => 'TaskUserController@update']);
             Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'TaskUserController@destroy']);
+        });
+
+        //TASK TIMES
+        Route::group(['prefix' => 'time', 'as' => 'time.'], function () {
+            Route::get('play/{id}', ['as' => 'play', 'uses' => 'TaskTimeController@play']);
+            Route::get('pause/{id}', ['as' => 'pause', 'uses' => 'TaskTimeController@pause']);
+            Route::get('finish/{id}', ['as' => 'finish', 'uses' => 'TaskTimeController@finish']);
+            Route::get('checkCalcHours/{id}', ['as' => 'checkCalcHours', 'uses' => 'TaskTimeController@checkCalcHours']);
         });
 
     });

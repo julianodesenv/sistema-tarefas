@@ -6,11 +6,11 @@ use \Prettus\Validator\Contracts\ValidatorInterface;
 use \Prettus\Validator\LaravelValidator;
 
 /**
- * Class TaskUserValidator.
+ * Class TaskTimeValidator.
  *
  * @package namespace AgenciaS3\Validators;
  */
-class TaskUserValidator extends LaravelValidator
+class TaskTimeValidator extends LaravelValidator
 {
     /**
      * Validation Rules
@@ -19,13 +19,13 @@ class TaskUserValidator extends LaravelValidator
      */
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
-            'task_id' => 'required|exists:tasks,id',
-            'user_id' => 'required|exists:users,id',
+            'task_user_id' => 'required|exists:task_users,id',
+            'start' => 'required|date_format:Y-m-d H:i:s',
             'status' => 'required'
         ],
         ValidatorInterface::RULE_UPDATE => [
-            'task_id' => 'required|exists:tasks,id',
-            'user_id' => 'required|exists:users,id',
+            'task_user_id' => 'required|exists:task_users,id',
+            'start' => 'required|date_format:Y-m-d H:i:s',
             'status' => 'required'
         ],
     ];

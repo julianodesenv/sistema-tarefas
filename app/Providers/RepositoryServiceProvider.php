@@ -56,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\AgenciaS3\Repositories\TaskProjectRepository::class, \AgenciaS3\Repositories\TaskProjectRepositoryEloquent::class);
         $this->app->bind(\AgenciaS3\Repositories\TaskRepository::class, \AgenciaS3\Repositories\TaskRepositoryEloquent::class);
         $this->app->bind(\AgenciaS3\Repositories\TaskUserRepository::class, \AgenciaS3\Repositories\TaskUserRepositoryEloquent::class);
+        $this->app->bind(\AgenciaS3\Repositories\TaskTimeRepository::class, \AgenciaS3\Repositories\TaskTimeRepositoryEloquent::class);
         //:end-bindings:
     }
 }

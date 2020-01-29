@@ -3,18 +3,23 @@ const APP_URL = "http://localhost:8000/";
 $(document).ready(function () {
     $("input.dinheiro").maskMoney({showSymbol: true, symbol: "R$ ", decimal: ",", thousands: "."});
     $("input.mask-value").maskMoney({showSymbol: true, symbol: "", decimal: ",", thousands: "."});
+
+    changeSelected();
+    taskPlay();
+    taskPause();
+    taskFinish();
 });
 
 // Masked Input
-(function( $ ) {
+(function ($) {
 
     'use strict';
 
-    if ( $.isFunction($.fn[ 'mask' ]) ) {
+    if ($.isFunction($.fn['mask'])) {
 
-        $(function() {
-            $('[data-plugin-masked-input]').each(function() {
-                var $this = $( this ),
+        $(function () {
+            $('[data-plugin-masked-input]').each(function () {
+                var $this = $(this),
                     opts = {};
 
                 var pluginOptions = $this.data('plugin-options');
@@ -27,26 +32,25 @@ $(document).ready(function () {
 
     }
 
-}).apply(this, [ jQuery ]);
+}).apply(this, [jQuery]);
 
 
 // Masked Input
-(function(theme, $) {
+(function (theme, $) {
 
     theme = theme || {};
 
     var instanceName = '__maskedInput';
 
-    var PluginMaskedInput = function($el, opts) {
+    var PluginMaskedInput = function ($el, opts) {
         return this.initialize($el, opts);
     };
 
-    PluginMaskedInput.defaults = {
-    };
+    PluginMaskedInput.defaults = {};
 
     PluginMaskedInput.prototype = {
-        initialize: function($el, opts) {
-            if ( $el.data( instanceName ) ) {
+        initialize: function ($el, opts) {
+            if ($el.data(instanceName)) {
                 return this;
             }
 
@@ -60,20 +64,20 @@ $(document).ready(function () {
             return this;
         },
 
-        setData: function() {
+        setData: function () {
             this.$el.data(instanceName, this);
 
             return this;
         },
 
-        setOptions: function(opts) {
-            this.options = $.extend( true, {}, PluginMaskedInput.defaults, opts );
+        setOptions: function (opts) {
+            this.options = $.extend(true, {}, PluginMaskedInput.defaults, opts);
 
             return this;
         },
 
-        build: function() {
-            this.$el.mask( this.$el.data('input-mask'), this.options );
+        build: function () {
+            this.$el.mask(this.$el.data('input-mask'), this.options);
 
             return this;
         }
@@ -85,8 +89,8 @@ $(document).ready(function () {
     });
 
     // jquery plugin
-    $.fn.themePluginMaskedInput = function(opts) {
-        return this.each(function() {
+    $.fn.themePluginMaskedInput = function (opts) {
+        return this.each(function () {
             var $this = $(this);
 
             if ($this.data(instanceName)) {
@@ -98,7 +102,7 @@ $(document).ready(function () {
         });
     }
 
-}).apply(this, [ window.theme, jQuery ]);
+}).apply(this, [window.theme, jQuery]);
 
 $('.btnDestroy').bind('click', function () {
     var route = $(this).attr('data-route');
@@ -173,4 +177,90 @@ function getSelectCities(state_id, city_id) {
         });
     }
     return false;
+}
+
+function changeSelected() {
+    $('.changeSelected').change(function () {
+        var vClass = $(this).attr('data-classe');
+        var id = $(this).val();
+        var route = $(this).attr('data-route');
+        route = route.replace('/0', '/' + id);
+        $.ajax({
+            type: "GET",
+            url: route,
+            beforeSend: function () {
+                $('.' + vClass).html('<option value="">Pesquisando...</option>');
+                //$('.' + vClass).prev('span').find('p').html('Localizando...');
+            },
+            success: function (result) {
+                $('.' + vClass).html(result);
+                /*
+
+                //$('.opMultiSelect .btn-group').remove();
+
+                $('.' + vClass).multiselect('destroy');
+                $('.' + vClass).multiselect();
+
+                $('.' + vClass).select2('destroy');
+                $('.' + vClass).select2();
+                */
+                //getMultiSelect();
+            }
+        });
+        return false;
+    });
+}
+
+function taskPlay() {
+    $('.btnTaskPlay').bind('click', function () {
+        let task_user_id = $('.actionTask').attr('data-task-user-id');
+
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/time/play/' + task_user_id,
+            beforeSend: function () {
+
+            },
+            success: function (result) {
+                alert(result.message);
+            }
+        });
+        return false;
+    });
+}
+
+function taskPause() {
+    $('.btnTaskPause').bind('click', function () {
+        let task_user_id = $('.actionTask').attr('data-task-user-id');
+
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/time/pause/' + task_user_id,
+            beforeSend: function () {
+
+            },
+            success: function (result) {
+                alert(result.message);
+            }
+        });
+        return false;
+    });
+}
+
+function taskFinish() {
+    $('.btnTaskFinish').bind('click', function () {
+        let task_user_id = $('.actionTask').attr('data-task-user-id');
+
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/time/finish/' + task_user_id,
+            beforeSend: function () {
+
+            },
+            success: function (result) {
+                alert(result.message);
+            }
+        });
+        return false;
+    });
 }

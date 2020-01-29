@@ -21,6 +21,8 @@ class CreateTaskUsersTable extends Migration
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->time('total')->nullable();
+            $table->enum('status', ['play', 'pause', 'finish'])->default('play');
             $table->timestamps();
             $table->softDeletes();
 		});

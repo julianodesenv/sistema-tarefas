@@ -5,13 +5,17 @@
         'required' => true,
         'select' => $clients,
         'data-plugin' => 'select2',
-        'data-placeholder' => 'Cliente'
+        'data-placeholder' => 'Cliente',
+        'class' => 'changeSelected',
+        'data-classe' => 'selectProjects',
+        'data-route' => route('system.ajax.task.project.selectByClient', 0)
     ],
     'i_1' => [
         'name' => 'project_id',
         'label' => 'Projeto',
         'required' => true,
         'select' => $projects,
+        'class' => 'selectProjects',
         'data-plugin' => 'select2',
         'data-placeholder' => 'Projeto'
     ],
@@ -21,7 +25,10 @@
         'required' => true,
         'select' => $sectors,
         'data-plugin' => 'select2',
-        'data-placeholder' => 'Setor'
+        'data-placeholder' => 'Setor',
+        'class' => 'changeSelected',
+        'data-classe' => 'selectActions',
+        'data-route' => route('system.ajax.task.action.selectByAction', 0)
     ]
 ])
 @include('system.layouts.form.input._input_select_pluck_4_4_4', [
@@ -30,6 +37,7 @@
         'label' => 'Ação',
         'required' => true,
         'select' => $actions,
+        'class' => 'selectActions',
         'data-plugin' => 'select2',
         'data-placeholder' => 'Ação'
     ],

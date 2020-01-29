@@ -8,11 +8,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class TaskUser.
+ * Class TaskTime.
  *
  * @package namespace AgenciaS3\Entities;
  */
-class TaskUser extends Model implements Transformable
+class TaskTime extends Model implements Transformable
 {
     use TransformableTrait, SoftDeletes;
 
@@ -24,25 +24,16 @@ class TaskUser extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'task_id',
-        'user_id',
-        'status',
-        'total'
+        'task_user_id',
+        'start',
+        'end',
+        'description',
+        'status' //play, pause, finish
     ];
 
-    public function task()
+    public function taskUser()
     {
-        return $this->belongsTo(Task::class, 'task_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function times()
-    {
-        return $this->hasMany(TaskTime::class);
+        return $this->belongsTo(TaskUser::class, 'task_user_id');
     }
 
 }
