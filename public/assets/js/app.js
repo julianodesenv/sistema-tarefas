@@ -5,9 +5,6 @@ $(document).ready(function () {
     $("input.mask-value").maskMoney({showSymbol: true, symbol: "", decimal: ",", thousands: "."});
 
     changeSelected();
-    taskPlay();
-    taskPause();
-    taskFinish();
 });
 
 // Masked Input
@@ -205,60 +202,6 @@ function changeSelected() {
                 $('.' + vClass).select2();
                 */
                 //getMultiSelect();
-            }
-        });
-        return false;
-    });
-}
-
-function taskPlay() {
-    $('.btnTaskPlay').bind('click', function () {
-        let task_user_id = $('.actionTask').attr('data-task-user-id');
-
-        $.ajax({
-            type: "GET",
-            url: APP_URL + 'task/time/play/' + task_user_id,
-            beforeSend: function () {
-
-            },
-            success: function (result) {
-                alert(result.message);
-            }
-        });
-        return false;
-    });
-}
-
-function taskPause() {
-    $('.btnTaskPause').bind('click', function () {
-        let task_user_id = $('.actionTask').attr('data-task-user-id');
-
-        $.ajax({
-            type: "GET",
-            url: APP_URL + 'task/time/pause/' + task_user_id,
-            beforeSend: function () {
-
-            },
-            success: function (result) {
-                alert(result.message);
-            }
-        });
-        return false;
-    });
-}
-
-function taskFinish() {
-    $('.btnTaskFinish').bind('click', function () {
-        let task_user_id = $('.actionTask').attr('data-task-user-id');
-
-        $.ajax({
-            type: "GET",
-            url: APP_URL + 'task/time/finish/' + task_user_id,
-            beforeSend: function () {
-
-            },
-            success: function (result) {
-                alert(result.message);
             }
         });
         return false;

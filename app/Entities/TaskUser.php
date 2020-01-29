@@ -45,4 +45,11 @@ class TaskUser extends Model implements Transformable
         return $this->hasMany(TaskTime::class);
     }
 
+    public function finishDay()
+    {
+        return $this->where('status', 'finish')
+            ->where('updated_at', '>=', date('Y-m-d').' 00:00:00')
+            ->where('updated_at', '<=', date('Y-m-d').' 23:59:59');
+    }
+
 }

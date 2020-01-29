@@ -7,6 +7,7 @@ use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Repositories\TaskUserRepository;
 use AgenciaS3\Repositories\UserRepository;
 use AgenciaS3\Validators\TaskUserValidator;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -33,8 +34,18 @@ class TaskUserController extends Controller
     {
         $config = $this->header();
         $config['action'] = 'Listagem';
+        $user_id = Auth::user()->id;
 
-        $dados = $this->repository->findByField('user_id', 1);
+        $dados = $this->repository->with(['task.client', 'task.project', 'task.action'])
+            ->scopeQuery(function ($query) use ($user_id) {
+                $query = $query->where('user_id', $user_id)
+                    ->whereBetween('updated_at', [date('Y-m-d').' 00:00:00', date('Y-m-d').' 23:59:59'])
+                    ->orWhere('status', 'play')
+                    ->orWhere('status', 'pause')
+                    ->having('user_id', $user_id);
+
+                return $query;
+            })->all();
 
         return view('system.task.my-task', compact('dados', 'config'));
     }
@@ -127,7 +138,7 @@ class TaskUserController extends Controller
         if ($dados) {
             try {
                 $data = $dados->toArray();
-                if(!is_null($total)) {
+                if (!is_null($total)) {
                     $data['total'] = calculaHoras($dados->total, $total);
                 }
                 $data['status'] = $status;
@@ -148,6 +159,14 @@ class TaskUserController extends Controller
         }
 
         return false;
+    }
+
+    public function getActions($id)
+    {
+        if ($id) {
+            $row = $this->repository->findByField('id', $id)->first();
+            return view('system.task.inc._actions', compact('row'));
+        }
     }
 
 }

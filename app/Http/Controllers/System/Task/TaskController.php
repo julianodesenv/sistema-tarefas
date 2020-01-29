@@ -68,6 +68,20 @@ class TaskController extends Controller
         return view('system.task.index', compact('dados', 'config'));
     }
 
+
+    public function show($id, $task_user_id = null)
+    {
+        if($id){
+            $dados = $this->repository->with(['action', 'project', 'priority', 'users'])->findByField('id', $id)->first();
+            $taskUser = null;
+            if(!is_null($task_user_id)){
+                $taskUser = $dados->users->where('id', $task_user_id)->first();
+            }
+
+            return view('system.task.show', compact('dados', 'taskUser'));
+        }
+    }
+
     public function header()
     {
         $config['title'] = "Tarefas";

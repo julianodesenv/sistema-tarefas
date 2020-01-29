@@ -85,6 +85,7 @@
     <!-- Page -->
     <script src="{{ asset('assets/js/Site.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/tasks.js') }}"></script>
     <script src="{{ asset('assets/global/js/Plugin/datatables.js') }}"></script>
     <script src="{{ asset('assets/global/js/Plugin/select2.js') }}"></script>
 

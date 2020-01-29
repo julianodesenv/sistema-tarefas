@@ -2,3 +2,6 @@
   display: none;
 }
 
+td{
+  word-wrap:break-word!important;
+}
