@@ -47,7 +47,7 @@ class TaskUserController extends Controller
                 return $query;
             })->all();
 
-        return view('system.task.my-task', compact('dados', 'config'));
+        return view('system.task.index', compact('dados', 'config'));
     }
 
     public function header()

@@ -88,7 +88,6 @@ class TaskTimeController extends Controller
         if ($time) {
             $data['start'] = $time->start;
             $data['end'] = date('Y-m-d H:i:s');
-            $data['description'] = 'primeira pausa';
             $data['status'] = 'pause';
 
             $response = $this->update($data, $time->id);
@@ -140,7 +139,6 @@ class TaskTimeController extends Controller
         if ($time) {
             $data['start'] = $time->start;
             $data['end'] = date('Y-m-d H:i:s');
-            $data['description'] = 'finalização';
             $data['status'] = 'finish';
 
             $this->update($data, $time->id);
@@ -164,7 +162,22 @@ class TaskTimeController extends Controller
             'error' => true,
             'message' => ['Status incorreto']
         ]);
+    }
 
+    public function openFinishDescription($id)
+    {
+        if ($id) {
+            $time = $this->repository->orderBy('id', 'desc')->findWhere(['task_user_id' => $id, 'status' => 'finish'])->first();
+            return response()->json([
+                'success' => true,
+                'message' => isset($time->description) ? $time->description : ''
+            ]);
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => ['Id não informado']
+        ]);
     }
 
     public function checkCalcHours($taskUserId)

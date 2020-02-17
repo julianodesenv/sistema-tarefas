@@ -223,6 +223,7 @@
                         </div>
                     </li>
                     -->
+                    @include('system.layouts.menu.tasks')
                     @include('system.layouts.menu.social-media')
                     <li class="dropdown site-menu-item has-section has-sub">
                         <a data-toggle="dropdown" href="{{ route('system.schedule.index') }}" data-dropdown-toggle="false">

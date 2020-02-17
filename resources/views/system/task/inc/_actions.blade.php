@@ -6,3 +6,6 @@
     <a href="javascript:void(0);" title="Pausar" data-toggle="modal" data-target="#taskPause" class="btn btn-icon btn-default btn-outline btnTaskPause"><i class="icon wb-pause" aria-hidden="true"></i></a>
     <a href="javascript:void(0);" title="Finalizar" data-toggle="modal" data-target="#taskFinish"  class="btn btn-icon btn-default btn-outline btnTaskFinish"><i class="icon wb-check" aria-hidden="true"></i></a>
 @endif
+@if($row->status == 'finish')
+    <a href="javascript:void(0);" title="Reabrir" class="btn btn-icon btn-warning btn-outline btnTaskReopen"><i class="icon wb-check" aria-hidden="true"></i></a>
+@endif

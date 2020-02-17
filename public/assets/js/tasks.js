@@ -2,6 +2,7 @@ $(document).ready(function () {
     taskPlay();
     taskPause();
     taskFinish();
+    taskReopen();
     taskShow();
     formPause();
     formFinish();
@@ -37,6 +38,7 @@ function reloadActions(task_user_id) {
             taskPause();
             taskFinish();
             taskShow();
+            taskReopen();
         }
     });
     return false;
@@ -53,6 +55,23 @@ function taskPlay() {
             },
             success: function (result) {
                 //alert(result.message);
+                reloadActions(task_user_id);
+            }
+        });
+        return false;
+    });
+}
+
+function taskReopen() {
+    $('.btnTaskReopen').bind('click', function () {
+        let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/time/play/' + task_user_id,
+            beforeSend: function () {
+                $('#action-' + task_user_id).html('<i class="icon wb-reload icon-spin" aria-hidden="true"></i>');
+            },
+            success: function (result) {
                 reloadActions(task_user_id);
             }
         });
@@ -104,8 +123,24 @@ function formPause() {
 function taskFinish() {
     $('.btnTaskFinish').bind('click', function () {
         let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
+        reloadDescriptionFinish(task_user_id);
         $('#taskUserIdFinish').val(task_user_id);
     });
+}
+
+function reloadDescriptionFinish(task_user_id) {
+    if(task_user_id){
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/time/openFinishDescription/' + task_user_id,
+            beforeSend: function () {
+                $('#finishDescription').val('Pesquisando...');
+            },
+            success: function (result) {
+                $('#finishDescription').val(result.message);
+            }
+        });
+    }
 }
 
 function formFinish() {

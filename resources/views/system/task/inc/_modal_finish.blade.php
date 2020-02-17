@@ -10,11 +10,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="col-xl-12 msg">
-                </div>
                 <div class="col-xl-12 form-group">
                     @include('system.layouts.form.input._description', [
                         'label' => 'Descrição da finalização',
+                        'id' => 'finishDescription',
                         'required' => true
                     ])
                 </div>
