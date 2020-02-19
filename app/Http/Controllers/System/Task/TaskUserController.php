@@ -4,6 +4,7 @@ namespace AgenciaS3\Http\Controllers\System\Task;
 
 use AgenciaS3\Entities\TaskUser;
 use AgenciaS3\Http\Controllers\Controller;
+use AgenciaS3\Notifications\System\TaskNotification;
 use AgenciaS3\Repositories\TaskUserRepository;
 use AgenciaS3\Repositories\UserRepository;
 use AgenciaS3\Validators\TaskUserValidator;
@@ -21,13 +22,17 @@ class TaskUserController extends Controller
 
     protected $userRepository;
 
+    protected $taskNotificationController;
+
     public function __construct(TaskUserRepository $repository,
                                 TaskUserValidator $validator,
-                                UserRepository $userRepository)
+                                UserRepository $userRepository,
+                                TaskNotificationController $taskNotificationController)
     {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->userRepository = $userRepository;
+        $this->taskNotificationController = $taskNotificationController;
     }
 
     public function index($id = null)
@@ -81,7 +86,7 @@ class TaskUserController extends Controller
                 $data['task_id'] = $id;
                 $data['user_id'] = $row;
                 $data['status'] = 'pause';
-                $this->store($data);
+                $taskUsers = $this->store($data);
             }
 
             return response()->json([
@@ -104,6 +109,9 @@ class TaskUserController extends Controller
             try {
                 $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
                 $dados = $this->repository->create($data);
+
+                //envia notificação para usuarios
+                $this->taskNotificationController->create($dados);
 
                 return response()->json([
                     'success' => true,

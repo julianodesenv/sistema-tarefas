@@ -80,30 +80,46 @@ class TaskController extends Controller
     public function show($id, $task_user_id = null)
     {
         if ($id) {
-            $dados = $this->repository->with([
-                'action',
-                'project',
-                'sector',
-                'priority',
-                'users',
-                'users.times'
-            ])->findByField('id', $id)->first();
+            $config = $this->header();
+            $config['action'] = 'Visualizar Tarefa #' . $id;
+
+            $dados = $this->repository->getById($id);
             $taskUser = null;
             $dateStart = null;
             $dateEnd = null;
-            if (!is_null($task_user_id)) {
-                $taskUser = $dados->users->where('id', $task_user_id)->first();
-                $timesFirst = $taskUser->times->first();
-                if($timesFirst){
-                    $dateStart = $timesFirst->start;
-                }
-                $timesEnd = $taskUser->times->where('status', 'finish')->last();
-                if($timesEnd){
-                    $dateEnd = $timesEnd->end;
-                }
-            }
 
-            return view('system.task.show', compact('dados', 'taskUser', 'dateStart', 'dateEnd'));
+            $this->resumeTask($task_user_id, $dados);
+
+            return view('system.task.show', compact('dados', 'config', 'taskUser', 'dateStart', 'dateEnd'));
+        }
+    }
+
+    public function resumeTask($task_user_id, $dados)
+    {
+        if (!is_null($task_user_id)) {
+            $taskUser = $dados->users->where('id', $task_user_id)->first();
+            $timesFirst = $taskUser->times->first();
+            if ($timesFirst) {
+                $dateStart = $timesFirst->start;
+            }
+            $timesEnd = $taskUser->times->where('status', 'finish')->last();
+            if ($timesEnd) {
+                $dateEnd = $timesEnd->end;
+            }
+        }
+    }
+
+    public function showModal($id, $task_user_id = null)
+    {
+        if ($id) {
+            $dados = $this->repository->getById($id);
+            $taskUser = null;
+            $dateStart = null;
+            $dateEnd = null;
+
+            $this->resumeTask($task_user_id, $dados);
+
+            return view('system.task.inc.show', compact('dados', 'taskUser', 'dateStart', 'dateEnd'));
         }
     }
 

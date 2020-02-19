@@ -11,6 +11,7 @@ Route::group(['prefix' => 'task', 'as' => 'task.', 'namespace' => 'Task'], funct
     Route::put('update/{id}', ['as' => 'update', 'uses' => 'TaskController@update']);
     Route::get('edit-users/{id}', ['as' => 'edit-users', 'uses' => 'TaskController@editUsers']);
     Route::put('updateUsers/{id}', ['as' => 'update-users', 'uses' => 'TaskController@updateUsers']);
+    Route::get('showModal/{id}/{task_user_id?}', ['as' => 'showModal', 'uses' => 'TaskController@showModal']);
     Route::get('show/{id}/{task_user_id?}', ['as' => 'show', 'uses' => 'TaskController@show']);
     Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'TaskController@destroy']);
     Route::get('getActions/{id}', ['as' => 'getActions', 'uses' => 'TaskUserController@getActions']);

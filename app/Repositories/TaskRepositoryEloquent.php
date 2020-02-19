@@ -2,12 +2,10 @@
 
 namespace AgenciaS3\Repositories;
 
-use Illuminate\Support\Carbon;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use AgenciaS3\Repositories\TaskRepository;
 use AgenciaS3\Entities\Task;
 use AgenciaS3\Validators\TaskValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class TaskRepositoryEloquent.
@@ -16,6 +14,18 @@ use AgenciaS3\Validators\TaskValidator;
  */
 class TaskRepositoryEloquent extends BaseRepository implements TaskRepository
 {
+
+    public function getById($id)
+    {
+        return $this->with([
+            'action',
+            'project',
+            'sector',
+            'priority',
+            'users',
+            'users.times'
+        ])->findByField('id', $id)->first();
+    }
 
     public function tasksByUser($user_id, $limit = null)
     {
@@ -46,10 +56,10 @@ class TaskRepositoryEloquent extends BaseRepository implements TaskRepository
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name
+     *
+     * @return mixed
+     */
     public function validator()
     {
 
@@ -64,5 +74,5 @@ class TaskRepositoryEloquent extends BaseRepository implements TaskRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

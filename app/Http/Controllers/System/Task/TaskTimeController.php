@@ -24,17 +24,21 @@ class TaskTimeController extends Controller
 
     protected $taskController;
 
+    protected $taskNotificationController;
+
     public function __construct(TaskTimeRepository $repository,
                                 TaskTimeValidator $validator,
                                 TaskUserController $taskUserController,
                                 TaskUserRepository $taskUserRepository,
-                                TaskController $taskController)
+                                TaskController $taskController,
+                                TaskNotificationController $taskNotificationController)
     {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->taskUserController = $taskUserController;
         $this->taskUserRepository = $taskUserRepository;
         $this->taskController = $taskController;
+        $this->taskNotificationController = $taskNotificationController;
     }
 
     public function play(SystemRequest $request, $id)
@@ -119,6 +123,9 @@ class TaskTimeController extends Controller
         try {
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
             $dados = $this->repository->update($data, $id);
+
+
+            $this->taskNotificationController->finish($dados);
 
             $response = [
                 'success' => 'Registro alterado com sucesso!'

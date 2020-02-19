@@ -31,7 +31,7 @@ function taskShowReport() {
         let id = $(this).attr('data-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/report/show/' + id,
+            url: APP_URL + 'task/report/showModal/' + id,
             beforeSend: function () {
                 $('.showTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
             },
@@ -48,7 +48,7 @@ function taskShow() {
         let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/show/' + task_id + '/' + task_user_id,
+            url: APP_URL + 'task/showModal/' + task_id + '/' + task_user_id,
             beforeSend: function () {
                 $('.showTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
             },
