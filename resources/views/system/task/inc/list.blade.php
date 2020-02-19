@@ -8,7 +8,7 @@
     <table class="table table-hover table-no-more table-striped mb-0 text-truncate wrapper">
         <thead>
         <tr>
-            <th>#</th>
+            <th>PIT</th>
             <th class="text-center">Ação</th>
             <th class="text-center">Prazo</th>
             <th class="text-center">Prioridade</th>
@@ -25,7 +25,7 @@
             }
             ?>
             <tr>
-                <td data-title="#">{{ $row->task_id.' | '.$row->user_id }}</td>
+                <td data-title="PIT">{{ $row->task_id }}</td>
                 <td data-title="Ação" id="action-{{ $row->id }}" class="text-center actionTask" data-task-id="{{ $row->task_id }}" data-task-user-id="{{ $row->id }}">
                     @include('system.task.inc._actions')
                 </td>

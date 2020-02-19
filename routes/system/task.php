@@ -8,10 +8,11 @@ Route::group(['prefix' => 'task', 'as' => 'task.', 'namespace' => 'Task'], funct
     Route::get('create', ['as' => 'create', 'uses' => 'TaskController@create']);
     Route::post('store', ['as' => 'store', 'uses' => 'TaskController@store']);
     Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'TaskController@edit']);
-    Route::get('show/{id}/{task_user_id?}', ['as' => 'edit', 'uses' => 'TaskController@show']);
     Route::put('update/{id}', ['as' => 'update', 'uses' => 'TaskController@update']);
+    Route::get('edit-users/{id}', ['as' => 'edit-users', 'uses' => 'TaskController@editUsers']);
+    Route::put('updateUsers/{id}', ['as' => 'update-users', 'uses' => 'TaskController@updateUsers']);
+    Route::get('show/{id}/{task_user_id?}', ['as' => 'show', 'uses' => 'TaskController@show']);
     Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'TaskController@destroy']);
-
     Route::get('getActions/{id}', ['as' => 'getActions', 'uses' => 'TaskUserController@getActions']);
 
     //REPORT

@@ -51,6 +51,9 @@
                                 <td class="text-center">@if(!is_null($dateEnd)){{ mysql_to_data($dateEnd, true, true) }}@endif</td>
                                 <td class="text-center">
                                     <a href="javascript:void(0);" data-id="{{ $row->id }}" title="Visualizar" data-toggle="modal" data-target="#taskShowReport" class="btn btn-icon bg-success btn-outline btnTaskShowReport"><i class="icon wb-zoom-in" aria-hidden="true"></i></a>
+                                    @if(Auth::user()->role_id == 2 || Auth::user()->role_id == 1 || Auth::user()->id == $row->task->responsible_user_id)
+                                        <a href="{{ route('system.task.edit', $row->task_id) }}" title="Alterar" class="btn btn-icon btn-default btn-outline"><i class="icon wb-pencil" aria-hidden="true"></i></a>
+                                    @endif
                                 </td>
                                 <td>{{ $row->task->responsible->name }}</td>
                                 <td>{{ $row->user->name }}</td>

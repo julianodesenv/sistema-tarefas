@@ -208,6 +208,36 @@ class TaskController extends Controller
         }
     }
 
+    public function editUsers($id)
+    {
+        $dados = $this->repository->with('users')->find($id);
+        $users = $this->userRepository->orderBy('name')->all();
+
+        return view('system.task.form.edit_users', compact('dados', 'users'));
+    }
+
+    public function updateUsers(SystemRequest $request, $id)
+    {
+        $data = $request->all();
+        if (!isset($data['users']) || !is_array($data['users'])) {
+            return redirect()->back()->withErrors('Selecione um usuário!')->withInput();
+        }
+        try {
+            if (isset($data['users']) && is_array($data['users'])) {
+                $this->taskUserController->checkUsers($id, $data['users']);
+            }
+
+            $response = [
+                'success' => 'Registro alterado com sucesso!'
+            ];
+
+            return redirect()->back()->with('success', $response['success']);
+
+        } catch (ValidatorException $e) {
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
+    }
+
     public function active($id)
     {
         try {

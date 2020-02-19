@@ -9,3 +9,6 @@
 @if($row->status == 'finish')
     <a href="javascript:void(0);" title="Reabrir" class="btn btn-icon btn-warning btn-outline btnTaskReopen"><i class="icon wb-check" aria-hidden="true"></i></a>
 @endif
+@if(Auth::user()->role_id == 2 || Auth::user()->role_id == 1 || Auth::user()->id == $row->task->responsible_user_id)
+    <a href="{{ route('system.task.edit', $row->task_id) }}" title="Alterar" class="btn btn-icon btn-default btn-outline"><i class="icon wb-pencil" aria-hidden="true"></i></a>
+@endif

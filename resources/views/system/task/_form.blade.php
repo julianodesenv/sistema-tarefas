@@ -82,21 +82,19 @@
     @if(!$users->isEmpty())
         @foreach($users as $user)
             <div class="col-md-4">
-                <div class="form-group">
-                    <div class="checkbox-custom checkbox-default">
-                        <?php
-                        $checked = '';
-                        if(isset($dados) && isset($dados->users)){
-                            foreach ($dados->users as $row){
-                                if($row->user_id == $user->id){
-                                    $checked = 'checked';
-                                }
+                <div class="checkbox-custom checkbox-default">
+                    <?php
+                    $checked = '';
+                    if(isset($dados) && isset($dados->users)){
+                        foreach ($dados->users as $row){
+                            if($row->user_id == $user->id){
+                                $checked = 'checked';
                             }
                         }
-                        ?>
-                        <input type="checkbox" name="users[]" {{ $checked }} value="{{ $user->id }}" id="{{ $user->id }}">
-                        {!! Form::label($user->id, $user->name) !!}
-                    </div>
+                    }
+                    ?>
+                    <input type="checkbox" name="users[]" {{ $checked }} value="{{ $user->id }}" id="{{ $user->id }}">
+                    {!! Form::label($user->id, $user->name) !!}
                 </div>
             </div>
         @endforeach

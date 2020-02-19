@@ -66,7 +66,9 @@ class TaskUserController extends Controller
             }
 
             $arrayDelete = array_diff_key($users, $newUsers);
-            $delete = TaskUser::whereIn('user_id', $arrayDelete)->get()->each->delete();
+            $delete = TaskUser::where('task_id', $id)->whereIn('user_id', $arrayDelete)
+                ->get()
+                ->each->delete();
 
             return $this->addUsers($id, $dados);
         }

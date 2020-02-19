@@ -7,7 +7,24 @@ $(document).ready(function () {
     formPause();
     formFinish();
     taskShowReport();
+    taskEditUsers();
 });
+
+function taskEditUsers(){
+    $('.btnTaskEditUsers').bind('click', function () {
+        let task_id = $(this).parent('.actionTask').attr('data-task-id');
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/edit-users/' + task_id,
+            beforeSend: function () {
+                $('.showEditUserTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
+            },
+            success: function (result) {
+                $('.showEditUserTask').html(result);
+            }
+        });
+    });
+}
 
 function taskShowReport() {
     $('.btnTaskShowReport').bind('click', function () {
