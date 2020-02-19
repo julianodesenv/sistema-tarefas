@@ -2052,6 +2052,51 @@
         "description": "Highlight PHP code in terminal"
     },
     {
+        "name": "justbetter/laravel-pagination-with-havings",
+        "version": "1.2",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/justbetter/laravel-pagination-with-havings.git",
+            "reference": "a568f0409beffbbf34043531fed7f3461290673a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/justbetter/laravel-pagination-with-havings/zipball/a568f0409beffbbf34043531fed7f3461290673a",
+            "reference": "a568f0409beffbbf34043531fed7f3461290673a",
+            "shasum": ""
+        },
+        "require": {
+            "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+            "php": ">=7.0"
+        },
+        "time": "2019-09-04T15:40:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JustBetter\\PaginationWithHavings\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Roy Duineveld",
+                "email": "royduineveld@gmail.com"
+            }
+        ],
+        "description": "Makes it possible to use pagination with havings in queries.",
+        "homepage": "https://github.com/justbetter/laravel-pagination-with-havings",
+        "keywords": [
+            "having",
+            "laravel",
+            "pagination"
+        ]
+    },
+    {
         "name": "justinrainbow/json-schema",
         "version": "5.2.9",
         "version_normalized": "5.2.9.0",

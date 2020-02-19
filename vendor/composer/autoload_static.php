@@ -119,6 +119,7 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         ),
         'J' => 
         array (
+            'JustBetter\\PaginationWithHavings\\' => 33,
             'JsonSchema\\' => 11,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
@@ -388,6 +389,10 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         array (
             0 => __DIR__ . '/..' . '/laravel/telescope/src',
         ),
+        'JustBetter\\PaginationWithHavings\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/justbetter/laravel-pagination-with-havings/src',
+        ),
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
@@ -590,6 +595,7 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         'AgenciaS3\\Criteria\\FindByStatusIdArrayCriteria' => __DIR__ . '/../..' . '/app/Criteria/FindByStatusIdArrayCriteria.php',
         'AgenciaS3\\Criteria\\FindByStatusIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/FindByStatusIdCriteria.php',
         'AgenciaS3\\Criteria\\FindByTypeCriteria' => __DIR__ . '/../..' . '/app/Criteria/FindByTypeCriteria.php',
+        'AgenciaS3\\Criteria\\FindByUserIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/FindByUserIdCriteria.php',
         'AgenciaS3\\Criteria\\Order\\FindByOrderEmailCriteria' => __DIR__ . '/../..' . '/app/Criteria/Order/FindByOrderEmailCriteria.php',
         'AgenciaS3\\Criteria\\Order\\FindByOrderNameCriteria' => __DIR__ . '/../..' . '/app/Criteria/Order/FindByOrderNameCriteria.php',
         'AgenciaS3\\Criteria\\Order\\FindByOrderStatusIdArrayCriteria' => __DIR__ . '/../..' . '/app/Criteria/Order/FindByOrderStatusIdArrayCriteria.php',
@@ -599,6 +605,16 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         'AgenciaS3\\Criteria\\SocialMedia\\FindByPitCriteria' => __DIR__ . '/../..' . '/app/Criteria/SocialMedia/FindByPitCriteria.php',
         'AgenciaS3\\Criteria\\SocialMedia\\FindByServiceCriteria' => __DIR__ . '/../..' . '/app/Criteria/SocialMedia/FindByServiceCriteria.php',
         'AgenciaS3\\Criteria\\SocialMedia\\FindByServiceIdArrayCriteria' => __DIR__ . '/../..' . '/app/Criteria/SocialMedia/FindByServiceIdArrayCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByActionIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByActionIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByProjectIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByProjectIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindBySectorIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindBySectorIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByStartEndDateCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByStartEndDateCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskActionIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskActionIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskClientIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskClientIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskProjectIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskProjectIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskSectorIdCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskSectorIdCriteria.php',
+        'AgenciaS3\\Criteria\\Task\\FindByTaskStartEndDateCriteria' => __DIR__ . '/../..' . '/app/Criteria/Task/FindByTaskStartEndDateCriteria.php',
         'AgenciaS3\\Entities\\City' => __DIR__ . '/../..' . '/app/Entities/City.php',
         'AgenciaS3\\Entities\\Client' => __DIR__ . '/../..' . '/app/Entities/Client.php',
         'AgenciaS3\\Entities\\ClientContact' => __DIR__ . '/../..' . '/app/Entities/ClientContact.php',
@@ -670,6 +686,7 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         'AgenciaS3\\Http\\Controllers\\System\\SocialMedia\\SocialMediaPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/SocialMedia/SocialMediaPostController.php',
         'AgenciaS3\\Http\\Controllers\\System\\SocialMedia\\SocialMediaPostServiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/SocialMedia/SocialMediaPostServiceController.php',
         'AgenciaS3\\Http\\Controllers\\System\\Task\\TaskController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/Task/TaskController.php',
+        'AgenciaS3\\Http\\Controllers\\System\\Task\\TaskReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/Task/TaskReportController.php',
         'AgenciaS3\\Http\\Controllers\\System\\Task\\TaskTimeController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/Task/TaskTimeController.php',
         'AgenciaS3\\Http\\Controllers\\System\\Task\\TaskUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/System/Task/TaskUserController.php',
         'AgenciaS3\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -3282,6 +3299,8 @@ class ComposerStaticInita5ab1bd419978361907ffd48a0d3dfdd
         'JsonSchema\\Uri\\UriResolver' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Uri/UriResolver.php',
         'JsonSchema\\Uri\\UriRetriever' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Uri/UriRetriever.php',
         'JsonSchema\\Validator' => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema/Validator.php',
+        'JustBetter\\PaginationWithHavings\\BuilderWithPaginationHavingSupport' => __DIR__ . '/..' . '/justbetter/laravel-pagination-with-havings/src/BuilderWithPaginationHavingSupport.php',
+        'JustBetter\\PaginationWithHavings\\PaginationWithHavings' => __DIR__ . '/..' . '/justbetter/laravel-pagination-with-havings/src/PaginationWithHavings.php',
         'Laravel\\Telescope\\AuthorizesRequests' => __DIR__ . '/..' . '/laravel/telescope/src/AuthorizesRequests.php',
         'Laravel\\Telescope\\Console\\ClearCommand' => __DIR__ . '/..' . '/laravel/telescope/src/Console/ClearCommand.php',
         'Laravel\\Telescope\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/telescope/src/Console/InstallCommand.php',

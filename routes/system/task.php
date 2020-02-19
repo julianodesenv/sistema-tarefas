@@ -17,6 +17,7 @@ Route::group(['prefix' => 'task', 'as' => 'task.', 'namespace' => 'Task'], funct
     //REPORT
     Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'TaskReportController@index']);
+        Route::get('/show/{id}', ['as' => 'show', 'uses' => 'TaskReportController@show']);
     });
 
     //USERS
@@ -35,6 +36,10 @@ Route::group(['prefix' => 'task', 'as' => 'task.', 'namespace' => 'Task'], funct
         Route::post('finish', ['as' => 'finish', 'uses' => 'TaskTimeController@finish']);
         Route::get('openFinishDescription/{id}', ['as' => 'openFinishDescription', 'uses' => 'TaskTimeController@openFinishDescription']);
         Route::get('checkCalcHours/{id}', ['as' => 'checkCalcHours', 'uses' => 'TaskTimeController@checkCalcHours']);
+    });
+
+    Route::group(['prefix' => 'manager', 'as' => 'manager.'], function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'TaskManagerController@index']);
     });
 
 });

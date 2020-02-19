@@ -6,7 +6,24 @@ $(document).ready(function () {
     taskShow();
     formPause();
     formFinish();
+    taskShowReport();
 });
+
+function taskShowReport() {
+    $('.btnTaskShowReport').bind('click', function () {
+        let id = $(this).attr('data-id');
+        $.ajax({
+            type: "GET",
+            url: APP_URL + 'task/report/show/' + id,
+            beforeSend: function () {
+                $('.showTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
+            },
+            success: function (result) {
+                $('.showTask').html(result);
+            }
+        });
+    });
+}
 
 function taskShow() {
     $('.btnTaskShow').bind('click', function () {

@@ -1,20 +1,15 @@
 @extends('system.layouts.app')
 @section('content')
-    @include('system.task.inc._modal_show')
-    @include('system.task.inc._modal_pause')
-    @include('system.task.inc._modal_finish')
-    <a href="{{ route('system.task.create') }}" class="site-action btn-raised btn btn-success btn-floating" role="button">
-        <i class="icon wb-plus" aria-hidden="true"></i>
-    </a>
+    @include('system.task.report.inc._modal_show')
     <div class="page-content">
         <div class="panel">
             <div class="panel-body">
                 @include('system.layouts.form._form_alerts')
                 @include('system.task.report._form_filter')
-                @if($dados->isEmpty())
+                @if(!$dados)
                     @include('system.layouts.form._no_record')
                 @else
-                    <table class="table table-hover table-no-more table-striped mb-0 text-truncate wrapper">
+                    <table class="table table-hover table-no-more table-striped mb-0 text-truncate dataTable text-wrap" data-plugin="dataTable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -31,8 +26,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php $total = '00:00:00'; ?>
-                        @foreach($dados as $row)
+                            <?php $total = '00:00:00'; ?>
+                            @foreach($dados as $row)
                             <?php
                             $total = calculaHoras($total, $row->total) ;
                             $dateStart = null;
@@ -47,7 +42,7 @@
                             }
                             ?>
                             <tr>
-                                <td>{{ $row->task_id }}</td>
+                                <td>{{ $row->task_id. ' | '.$row->id }}</td>
                                 <td>{{ $row->task->client->name }}</td>
                                 <td>{{ $row->task->project->name.' / '.$row->task->sector->name.' / '.$row->task->action->name }}</td>
                                 <td class="text-center">{{ mysql_to_data($row->task->start_date) }}</td>
@@ -55,20 +50,20 @@
                                 <td class="text-center">@if(!is_null($dateStart)){{ mysql_to_data($dateStart, true, true) }}@endif</td>
                                 <td class="text-center">@if(!is_null($dateEnd)){{ mysql_to_data($dateEnd, true, true) }}@endif</td>
                                 <td class="text-center">
-                                    LINK SHOW
+                                    <a href="javascript:void(0);" data-id="{{ $row->id }}" title="Visualizar" data-toggle="modal" data-target="#taskShowReport" class="btn btn-icon bg-success btn-outline btnTaskShowReport"><i class="icon wb-zoom-in" aria-hidden="true"></i></a>
                                 </td>
                                 <td>{{ $row->task->responsible->name }}</td>
                                 <td>{{ $row->user->name }}</td>
                                 <td>{{ $row->total }}</td>
                             </tr>
-                        @endforeach
-                        <tr class="table-danger">
-                            <td colspan="10" class="text-right">Total de Horas:</td>
-                            <td class="text-center">
-                                {{ $total }}
-                            </td>
-                        </tr>
+                            @endforeach
                         </tbody>
+                    </table>
+
+                    <table class="table table-hover table-no-more table-striped mb-0 text-truncate wrapper">
+                        <tr class="table-danger danger">
+                            <td class="text-right">Total de Horas: {{ $total }}</td>
+                        </tr>
                     </table>
                 @endif
             </div>

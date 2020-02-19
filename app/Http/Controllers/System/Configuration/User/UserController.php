@@ -43,7 +43,7 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::user()->role->id != 1) {
-            return redirect('system.home.index', 301);
+            return redirect(route('system.home.index'), 301);
         }
 
         $config = $this->header();

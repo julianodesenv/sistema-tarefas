@@ -456,7 +456,7 @@
 
 .has-error .select2-container--open .select2-selection {
   border-color: #ff4c52; }
-
+aaa
 .has-error.select2-drop-active {
   border-color: #ff4c52; }
   .has-error.select2-drop-active.select2-drop.select2-drop-above {
@@ -476,3 +476,7 @@
 
 .modal-open .select2-container {
   z-index: 1701; }
+
+.select2-container.select2-container--default.select2-container--open  {
+  z-index: 5000;
+}

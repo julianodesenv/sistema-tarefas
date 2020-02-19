@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "851adc2afb6293d3b78f4f87676c750b",
+    "content-hash": "554bf7ab5063a82c8f10a6832e11f3b3",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -814,6 +814,49 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "justbetter/laravel-pagination-with-havings",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justbetter/laravel-pagination-with-havings.git",
+                "reference": "a568f0409beffbbf34043531fed7f3461290673a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justbetter/laravel-pagination-with-havings/zipball/a568f0409beffbbf34043531fed7f3461290673a",
+                "reference": "a568f0409beffbbf34043531fed7f3461290673a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JustBetter\\PaginationWithHavings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roy Duineveld",
+                    "email": "royduineveld@gmail.com"
+                }
+            ],
+            "description": "Makes it possible to use pagination with havings in queries.",
+            "homepage": "https://github.com/justbetter/laravel-pagination-with-havings",
+            "keywords": [
+                "having",
+                "laravel",
+                "pagination"
+            ],
+            "time": "2019-09-04T15:40:22+00:00"
         },
         {
             "name": "laravel/framework",

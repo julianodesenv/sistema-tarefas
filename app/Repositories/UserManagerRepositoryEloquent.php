@@ -19,6 +19,11 @@ class UserManagerRepositoryEloquent extends BaseRepository implements UserManage
 {
     use CacheableRepository;
 
+    public function getUsers($manager_id)
+    {
+        return $this->with(['user', 'manager'])->findByField('manager_id', $manager_id);
+    }
+
     /**
      * Specify Model class name
      *

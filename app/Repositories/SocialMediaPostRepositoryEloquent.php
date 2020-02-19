@@ -17,9 +17,9 @@ use Prettus\Repository\Traits\CacheableRepository;
  *
  * @package namespace AgenciaS3\Repositories;
  */
-class SocialMediaPostRepositoryEloquent extends BaseRepository implements SocialMediaPostRepository
+class SocialMediaPostRepositoryEloquent extends BaseRepository implements SocialMediaPostRepository, CacheableInterface
 {
-    //use CacheableRepository;
+    use CacheableRepository;
 
     /**
      * @param $user_id

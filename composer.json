@@ -13,6 +13,7 @@
         "caouecs/laravel-lang": "~4.0",
         "escapework/frete": "0.5.*",
         "fideloper/proxy": "^4.0",
+        "justbetter/laravel-pagination-with-havings": "^1.2",
         "laravel/framework": "^6.2",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",

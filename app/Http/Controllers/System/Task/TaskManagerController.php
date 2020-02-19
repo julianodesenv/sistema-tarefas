@@ -5,6 +5,7 @@ namespace AgenciaS3\Http\Controllers\System\Task;
 use AgenciaS3\Entities\TaskUser;
 use AgenciaS3\Http\Controllers\Controller;
 use AgenciaS3\Repositories\TaskUserRepository;
+use AgenciaS3\Repositories\UserManagerRepository;
 use AgenciaS3\Repositories\UserRepository;
 use AgenciaS3\Validators\TaskUserValidator;
 use Illuminate\Support\Facades\Auth;
@@ -12,21 +13,25 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 
-class TaskUserController extends Controller
+class TaskManagerController extends Controller
 {
 
     protected $repository;
 
     protected $validator;
 
+    protected $userManagerRepository;
+
     protected $userRepository;
 
     public function __construct(TaskUserRepository $repository,
                                 TaskUserValidator $validator,
+                                UserManagerRepository $userManagerRepository,
                                 UserRepository $userRepository)
     {
         $this->repository = $repository;
         $this->validator = $validator;
+        $this->userManagerRepository = $userManagerRepository;
         $this->userRepository = $userRepository;
     }
 
@@ -34,11 +39,11 @@ class TaskUserController extends Controller
     {
         $config = $this->header();
         $config['action'] = 'Listagem';
-        $user_id = Auth::user()->id;
+        $manager_id = Auth::user()->id;
 
-        $tasks = $this->repository->getUserTaks($user_id, 30);
+        $users = $this->userManagerRepository->getUsers($manager_id);
 
-        return view('system.task.index', compact('tasks', 'config'));
+        return view('system.task.manager.index', compact('users', 'config'));
     }
 
     public function header()
@@ -48,6 +53,11 @@ class TaskUserController extends Controller
         $config['titleMenu'] = 'Tarefas';
 
         return $config;
+    }
+
+    public function getTasksUser($user_id)
+    {
+        return $this->repository->getUserTaks($user_id);
     }
 
     public function checkUsers($id, $dados)

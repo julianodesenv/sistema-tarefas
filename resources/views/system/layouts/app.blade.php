@@ -81,6 +81,7 @@
     <script src="{{ asset('assets/js/Section/Sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/Section/PageAside.js') }}"></script>
     <script src="{{ asset('assets/js/Plugin/menu.js') }}"></script>
+    <script src="{{ asset('assets/js/Plugin/tabs.js') }}"></script>
 
     <!-- Page -->
     <script src="{{ asset('assets/js/Site.js') }}"></script>
