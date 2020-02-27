@@ -12,7 +12,7 @@
                     <table class="table table-hover table-no-more table-striped mb-0 text-truncate dataTable text-wrap" data-plugin="dataTable">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>PIT</th>
                                 <th>Cliente</th>
                                 <th>Projeto / Setor / Ação </th>
                                 <th class="text-center">Entrada</th>
@@ -42,7 +42,7 @@
                             }
                             ?>
                             <tr>
-                                <td>{{ $row->task_id. ' | '.$row->id }}</td>
+                                <td>{{ $row->task_id }}</td>
                                 <td>{{ $row->task->client->name }}</td>
                                 <td>{{ $row->task->project->name.' / '.$row->task->sector->name.' / '.$row->task->action->name }}</td>
                                 <td class="text-center">{{ mysql_to_data($row->task->start_date) }}</td>

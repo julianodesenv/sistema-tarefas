@@ -23,7 +23,7 @@ class TaskRepositoryEloquent extends BaseRepository implements TaskRepository
             'sector',
             'priority',
             'users',
-            'users.times'
+            'users.times',
         ])->findByField('id', $id)->first();
     }
 
