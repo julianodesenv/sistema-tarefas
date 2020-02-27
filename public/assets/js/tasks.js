@@ -15,7 +15,7 @@ function taskEditUsers(){
         let task_id = $(this).parent('.actionTask').attr('data-task-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/edit-users/' + task_id,
+            url: APP_URL + '/task/edit-users/' + task_id,
             beforeSend: function () {
                 $('.showEditUserTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
             },
@@ -31,7 +31,7 @@ function taskShowReport() {
         let id = $(this).attr('data-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/report/showModal/' + id,
+            url: APP_URL + '/task/report/show/' + id,
             beforeSend: function () {
                 $('.showTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
             },
@@ -48,7 +48,7 @@ function taskShow() {
         let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/showModal/' + task_id + '/' + task_user_id,
+            url: APP_URL + '/task/showModal/' + task_id + '/' + task_user_id,
             beforeSend: function () {
                 $('.showTask').html('<div class="modal-body text-center"><i class="icon wb-reload icon-spin" aria-hidden="true"></i></div>');
             },
@@ -62,7 +62,7 @@ function taskShow() {
 function reloadActions(task_user_id) {
     $.ajax({
         type: "GET",
-        url: APP_URL + 'task/getActions/' + task_user_id,
+        url: APP_URL + '/task/getActions/' + task_user_id,
         beforeSend: function () {
             $('#action-' + task_user_id).html('<i class="icon wb-reload icon-spin" aria-hidden="true"></i>');
         },
@@ -83,7 +83,7 @@ function taskPlay() {
         let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/time/play/' + task_user_id,
+            url: APP_URL + '/task/time/play/' + task_user_id,
             beforeSend: function () {
 
             },
@@ -101,7 +101,7 @@ function taskReopen() {
         let task_user_id = $(this).parent('.actionTask').attr('data-task-user-id');
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/time/play/' + task_user_id,
+            url: APP_URL + '/task/time/play/' + task_user_id,
             beforeSend: function () {
                 $('#action-' + task_user_id).html('<i class="icon wb-reload icon-spin" aria-hidden="true"></i>');
             },
@@ -166,7 +166,7 @@ function reloadDescriptionFinish(task_user_id) {
     if(task_user_id){
         $.ajax({
             type: "GET",
-            url: APP_URL + 'task/time/openFinishDescription/' + task_user_id,
+            url: APP_URL + '/task/time/openFinishDescription/' + task_user_id,
             beforeSend: function () {
                 $('#finishDescription').val('Pesquisando...');
             },
